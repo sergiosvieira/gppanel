@@ -72,7 +72,7 @@
     <ClInclude Include="..\..\..\include\baseData.h" />
     <ClInclude Include="..\..\..\include\Fourier.h" />
     <ClInclude Include="..\..\..\include\Fourier.inline.h" />
-    <ClInclude Include="..\..\..\include\gpBarLayer.h" />
+    <ClInclude Include="..\..\..\include\gpMultiplotLayer.h" />
     <ClInclude Include="..\..\..\include\gpFormula.h" />
     <ClInclude Include="..\..\..\include\gpLayer.h" />
     <ClInclude Include="..\..\..\include\gpLineLayer.h" />
@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\gpPanel\baseData.cpp" />
-    <ClCompile Include="..\..\..\gpPanel\gpBarLayer.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\gpMultiplotLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpLineLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpPanel.cpp" />

@@ -373,6 +373,9 @@ public:
 		@param brush brush, will be copied to internal class member	*/
 	void SetBrush(wxBrush brush) { m_brush = brush; };
 
+	void invert(bool value) { m_invert = value; }
+	bool getInvert() { return m_invert; }
+
     /** Set Layer drawing order
         n = {0..10}
         @param n  when layer drawn. 0= first, 10=last
@@ -389,6 +392,7 @@ protected:
     bool     m_drawOutsideMargins; //!< select if the layer should draw only inside margins or over all DC
     mpLayerType m_type;     //!< Define layer type, which is assigned by constructor
 	bool 	m_visible;	    //!< Toggles layer visibility
+	bool	m_invert;		//< Invert the chart
 
 	mpShape m_pointType; //!< Define a point type, the default is a simple point
 	wxSize  m_RectSize; //!< The size of rectangles, when plotstyle mpRECT is used
@@ -1245,6 +1249,11 @@ public:
                      long flags = 0, const wxString& name = wxT("mathplot"));
     virtual ~mpWindow();
 
+	//mínimo e máximo de Y no eixo para todos os gráficos.
+	double getChartAxisMinY() { return m_minY; }
+	double getChartAxisMaxY() { return m_maxY; }
+
+
     /** Init popup menu.
         @todo It might be possible to format the menu outside of class some how...
     */
@@ -1263,6 +1272,8 @@ public:
         @retval FALSE Failure due to out of memory.
     */
     bool AddLayer( mpLayer* layer, bool refreshDisplay = true);
+
+	double getMinWLayersY();
 
     /** Remove a plot layer from the canvas.
         @param layer Pointer to layer. The mpLayer object will be destructed using delete.
@@ -1679,10 +1690,11 @@ protected:
 	wxColour m_fgColour;	//!< Foreground Colour
 	wxColour m_axColour;	//!< Axes Colour
 
-    double m_minX;      //!< Global layer bounding box, left border incl.
+
+	double m_minX;    //!< Global layer bounding box, left border incl.
     double m_maxX;      //!< Global layer bounding box, right border incl.
-    double m_minY;      //!< Global layer bounding box, bottom border incl.
-    double m_maxY;      //!< Global layer bounding box, top border incl.
+	double m_minY;     //!< Global layer bounding box, bottom border incl.
+	double m_maxY;     //!< Global layer bounding box, top border incl.
     double m_scaleX;    //!< Current view's X scale
     double m_scaleY;    //!< Current view's Y scale
 

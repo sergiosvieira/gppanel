@@ -187,22 +187,6 @@ baseXYData::baseXYData(const baseXYData& copy)
 }
 baseXYData::~baseXYData(){}
 
-void baseXYData::invertY()
-{
-	double maxY = GetMaxY();
-	for (auto &value : m_data)
-	{
-		if (value.second >= 0)
-		{
-			value.second = std::fabs(maxY - value.second);
-		}
-		else
-		{
-
-		}
-	}
-}
-
 /** Get smallest X value, which Y-value  not zero*/
 double baseXYData::GetMinXwhichNotZero()
 {
@@ -871,7 +855,7 @@ void MixedLineChartLayer::Rewind()
  /* ******************************************** */
 /*  		DEFAULT LINE CHART LAYER  			 */
 /* ********************************************* */
-lineChartLayer::lineChartLayer(wxString label) : mpXYArea( label ), baseXYData( )
+lineChartLayer::lineChartLayer(wxString label) : mpFXY( label ), baseXYData( )
 {
 	m_drawOutsideMargins 	= false;
 }
@@ -886,4 +870,27 @@ double lineChartLayer::GetMinX()		{ return baseXYData::GetMinX(); }
 double lineChartLayer::GetMaxX() 		{ return baseXYData::GetMaxX(); }
 void  lineChartLayer::CurrentBounds(double xmin, double xmax)
 										{ baseXYData::CurrentBounds(xmin, xmax);}
+
+/* ******************************************** */
+/*  		DEFAULT AREA CHART LAYER  			 */
+/* ********************************************* */
+areaChartLayer::areaChartLayer(wxString label) : mpXYArea(label), baseXYData()
+{
+	m_drawOutsideMargins = false;
+}
+
+/* Virtual functions for mpFXY */
+bool areaChartLayer::GetNextXY(double & x, double & y)
+{
+	return baseXYData::GetNextXY(x, y);
+}
+void areaChartLayer::Rewind() { baseXYData::Rewind(); }
+double areaChartLayer::GetMinY() { return baseXYData::GetMinY(); }
+double areaChartLayer::GetMaxY() { return baseXYData::GetMaxY(); }
+double areaChartLayer::GetMinX() { return baseXYData::GetMinX(); }
+double areaChartLayer::GetMaxX() { return baseXYData::GetMaxX(); }
+void  areaChartLayer::CurrentBounds(double xmin, double xmax)
+{
+	baseXYData::CurrentBounds(xmin, xmax);
+}
 

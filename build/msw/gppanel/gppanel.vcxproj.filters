@@ -63,7 +63,7 @@
     <ClInclude Include="..\..\..\include\symbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\gpBarLayer.h">
+    <ClInclude Include="..\..\..\include\gpMultiplotLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,7 +107,7 @@
     <ClCompile Include="..\..\..\gpPanel\mathplot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\gpPanel\gpBarLayer.cpp">
+    <ClCompile Include="..\..\..\gpPanel\gpMultiplotLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

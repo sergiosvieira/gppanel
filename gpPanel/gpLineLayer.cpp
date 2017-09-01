@@ -347,7 +347,7 @@ gpSeries* gpLineLayer::AddSeriesLayer( wxString label )
     Series->SetVisible( true );
     Series->ShowName( false );
 
-    this->AddLayer( Series->GetLayer() );
+    //this->AddLayer( Series->GetLayer() );
 
     return Series;
 }
@@ -393,7 +393,7 @@ mpLayer* gpLineLayer::FindLayer( wxString SeriesLabel )
     }
     else
     {
-        return pointer->GetLayer();
+        return nullptr;
     }
 }
 
@@ -470,7 +470,7 @@ void gpLineLayer::DeleteSeries( wxString SeriesLabel )
     DelAllLayers();
     return;
     //wxLogDebug( _T("Deleting layer") );
-    mpLayer* object = pointer->GetLayer();
+    mpLayer* object = nullptr;
     this->DelLayer( object , false );
 
     //wxLogDebug( _T("Deleting Series") );
