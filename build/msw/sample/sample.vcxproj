@@ -53,7 +53,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxmsw31ud_core.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxbase31ud.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxpngd.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxtiffd.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxjpegd.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxzlibd.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxregexud.lib;C:\Users\sergiosvieira\Projects\wxWidgets\lib\vc_lib\wxexpatd.lib;rpcrt4.lib;winmm.lib;wsock32.lib;wxtiffd.lib;comctl32.lib;C:\Users\sergiosvieira\Projects\gppanel\build\msw\sample\Debug\gppanel.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(WXWIN)\lib\vc_lib\wxmsw31ud_core.lib;$(WXWIN)\lib\vc_lib\wxbase31ud.lib;$(WXWIN)\lib\vc_lib\wxpngd.lib;$(WXWIN)\lib\vc_lib\wxtiffd.lib;$(WXWIN)\lib\vc_lib\wxjpegd.lib;$(WXWIN)\lib\vc_lib\wxzlibd.lib;$(WXWIN)\lib\vc_lib\wxregexud.lib;$(WXWIN)\lib\vc_lib\wxexpatd.lib;C:\Users\Joao\Downloads\chart\panel\gppanel\build\msw\sample\Debug\gppanel.lib;rpcrt4.lib;winmm.lib;wsock32.lib;wxtiffd.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

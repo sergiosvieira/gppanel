@@ -7,7 +7,7 @@
 //gpPanel widget
 #include <gpPanel.h>
 #include <gpLineLayer.h>
-#include <gpBarLayer.h>
+#include <gpMultiplotLayer.h>
 
 class MyFrame: public wxFrame
 {
@@ -39,69 +39,55 @@ void MyApp::gpTest(wxWindow* parentWindow)
 {
     // A panel is a container for one or more charts
     gpPanel* graphPanel = new gpPanel( parentWindow, wxNewId(), wxDefaultPosition,wxSize(240,336) );
+	gpMultiPlotLayer* multiLayer = new gpMultiPlotLayer(_("Bar Chart Layer"), _("sample number"), _("y"));
+	//multiLayer->invertYScale(true);
 
-    //create new line layer for each chart with its own axes and titles
-    //gpLineLayer* lli = new gpLineLayer(_("No Line :("), _("sample number"), _("I component"));
-    //gpLineLayer* llq = new gpLineLayer(_("No Line :("), _("sample number"), _("Q component"));
-    //gpLineLayer* lliq = new gpLineLayer(_("No Line:("), _("sample number"), _("IQ Plot"));
-	gpBarLayer* barLayer = new gpBarLayer(_("Bar Chart Layer"), _("sample number"), _("y"));
-	
-    // Multiple data series can be plotted on a single graph
-    //gpSeries* s1 = lliq->AddSeriesLayer("I");
-    //gpSeries* s2 = lliq->AddSeriesLayer("Q");
-    // Or on separate graphs
-    //gpSeries* si = lliq->AddSeriesLayer("I");
-    //gpSeries* sq = llq->AddSeriesLayer("Q");
-	barLayer->type(gpBarLayer::Type::LINE);
-	gpSeries* sb = barLayer->AddSeriesLayer("S");
+
+	//prec datas
+	multiLayer->type(gpMultiPlotLayer::Type::LINE);
+	gpSeries* sb = multiLayer->AddSeriesLayer("S");
+	sb->invert(false);
+	sb->SetPen((wxPen&)*wxBLUE_PEN);
 	sb->SetBrush((wxBrush&)*wxBLUE_BRUSH);
-	barLayer->type(gpBarLayer::Type::LINE);
-	gpSeries* sq = barLayer->AddSeriesLayer("Q");
+
+	sb->DataPush(0, 0.0);
+	sb->DataPush(0.980, 5.660);
+	sb->DataPush(5.540, 47.260);
+	sb->DataPush(21.340, 277.390);
+
+	//VOL
+	multiLayer->type(gpMultiPlotLayer::Type::POINT);
+	gpSeries* sq = multiLayer->AddSeriesLayer("Q");
+	sq->invert(false);
 	sq->SetPen((wxPen&)*wxRED_PEN);
 	sq->SetBrush((wxBrush&)*wxRED_BRUSH);
-    // Series colors can be selected via SetPen()
-    //si->SetPen((wxPen&) *wxRED_PEN);
-    //sq->SetPen((wxPen&) *wxBLUE_PEN);
-    //s1->SetPen((wxPen&) *wxRED_PEN);
-    //s2->SetPen((wxPen&) *wxBLUE_PEN);
 
-    //Push data to each series
-    for(int i = 0; i < 50; i++)
-    {
-        // Generate a random angle between 0 and 2PI
-        double theta =((double)rand()/(double)RAND_MAX) * 2 * M_PI;
-        // Get vector components of the angle
-        double ph_i = cos(theta);
-        double ph_q = sin(theta);
-        
-        // Add the components to the data series for the separate plots
-        //si->DataPush( i, ph_i );
-        //sq->DataPush( i, ph_q );
-        // Add the componenets to the data series for the combined plots
-        //s1->DataPush( i, ph_i );
-        //s2->DataPush( i, ph_q );
-		//sb->DataPush(i, i);
-		sq->DataPush(i, ph_i + 1);
-		//si->DataPush(i, i);
-    }
-	//sq->invertY();
-	//sb->invertY();
-    // Each layer must be added to the panel.
-    // Popup menu options can be specified in the second mask parameter, or 0 for none.
-    //graphPanel->AddLayer( lli, POPUP_FILE | POPUP_CHART | POPUP_EDIT | POPUP_HELP | POPUP_FIT );
-    //graphPanel->AddLayer( llq, POPUP_FILE | POPUP_CHART | POPUP_EDIT | POPUP_HELP | POPUP_FIT );
-    //graphPanel->AddLayer( lliq, POPUP_FILE | POPUP_CHART | POPUP_EDIT | POPUP_HELP | POPUP_FIT );
-	graphPanel->AddLayer(barLayer);
-    // Refresh the layers with the series data
-    //lli->RefreshChart();
-    //llq->RefreshChart();
-    //lliq->RefreshChart();
-	barLayer->RefreshChart();
-    // Fit the charts to the panel size
-    //graphPanel->Fit(lli);
-    //graphPanel->Fit(llq);
-    //graphPanel->Fit(lliq);
-	graphPanel->Fit(barLayer);
+	sq->DataPush(0, 0.0);
+	sq->DataPush(0.980, 5.660);
+	sq->DataPush(5.540, 47.260);
+	sq->DataPush(21.340, 277.390);
+
+	//EVAP
+	multiLayer->type(gpMultiPlotLayer::Type::LINE);
+	gpSeries* sp = multiLayer->AddSeriesLayer("V");
+	sp->invert(true);
+	sp->SetPen((wxPen&)*wxYELLOW_PEN);
+	sp->SetBrush((wxBrush&)*wxYELLOW_BRUSH);
+
+	/*sp->DataPush(1, 0.71437);
+	sp->DataPush(2, 0.527526);
+	sp->DataPush(3, 0.375912);
+	sp->DataPush(4, 0.353638);
+	sp->DataPush(5, 0.484907);
+	sp->DataPush(6, 0.669034);
+	sp->DataPush(7, 0.959391);
+	sp->DataPush(8, 1.19247);
+	sp->DataPush(9, 1.26814);
+	sp->DataPush(10, 1.24076);*/
+
+	graphPanel->AddLayer(multiLayer);
+	multiLayer->RefreshChart();
+	graphPanel->Fit(multiLayer);
 }
 
 bool MyApp::OnInit()

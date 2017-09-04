@@ -2,15 +2,23 @@
 #define GPSERIES_H
 
 #include "gpLayer.h"
-#include "baseData.h"
+#include "baseXYData.h"
 #include <vector>
+
+class lineChartLayer;
+class barChartLayer;
+class areaChartLayer;
+class areaChartLayer;
 
 class gpSeries
 {
 protected:
 	wxString m_Label;
-	lineChartLayer *m_Layer = nullptr;
+	lineChartLayer *m_lineLayer = nullptr;
 	barChartLayer *m_barLayer = nullptr;
+	areaChartLayer *m_areaLayer = nullptr;
+	lineChartLayer *m_pointLayer = nullptr;
+
 	baseXYData m_Data;
 public:
 	bool IsLabel( wxString CompareLabel );
@@ -18,7 +26,6 @@ public:
 	gpSeries( wxString label );
 	//! Destructor
 	virtual ~gpSeries( void );
-	void invertY();
 	void DataPush( double x, double y );
 	void RefreshChart(gpCHART_KIND gpChart_kind, double samplerate,
 		int fftlenght, wxString customXFormula, wxString customYFormula,
@@ -29,10 +36,13 @@ public:
 	void ShowName( bool show );
 	void SetPen( wxPen pen );
 	void SetBrush(wxBrush brush);
-	void DataClear( void );
-	mpLayer* GetLayer( void );
-	xyMultimap_t GetData( void );
+	void DataClear();
+	void invert(bool value);
+	xyMultimap_t GetData();
+	lineChartLayer* getLineChartLayer();
 	barChartLayer* getBarChartLayer();
+	areaChartLayer * getAreaChartLayer();
+	lineChartLayer * getPointChartLayer();
 };
 
 #endif

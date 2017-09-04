@@ -28,6 +28,12 @@
 #include "symbols.h"   //contains all math basic symbols
 
 
+class mpScaleY;
+class mpScaleX;
+class mpInfoCoords;
+class mpInfoLegend;
+
+
 /**
 *   gpLAYER type
 */

@@ -2,7 +2,7 @@
 #define LINE_LAYER_H
 
 #include "gpLayer.h"
-#include "baseData.h"
+#include "baseXYData.h"
 #include "gpSeries.h"
 
 #include <vector>
@@ -12,6 +12,8 @@
 #undef THIS_LAYER_TYPE
 #endif
 #define THIS_LAYER_TYPE     gpLAYER_LINE
+
+class mpNoteLegend;
 
 typedef std::deque<mpPointLayer*> mpPointList_t;
 

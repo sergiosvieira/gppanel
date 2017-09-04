@@ -1,13 +1,21 @@
-
 #include "gpSeries.h"
+#include "lineChartLayer.h"
+#include "barChartLayer.h"
+#include "areaChartLayer.h"
 
 /*!
  *  \brief Constructor
  */
 gpSeries::gpSeries( wxString label )
 {
-    m_Layer = new lineChartLayer( label );
+    m_lineLayer = new lineChartLayer( label );
 	m_barLayer = new barChartLayer(label);
+	m_areaLayer = new areaChartLayer(label);
+	m_pointLayer = new lineChartLayer(label);
+	m_barLayer->SetGradientBackColour(false);
+	m_pointLayer->SetPointType(mpCIRCLE);
+	m_pointLayer->SetContinuity(false);
+
     m_Label = label;
 }
 
@@ -17,12 +25,9 @@ gpSeries::gpSeries( wxString label )
  */
 gpSeries::~gpSeries( void )
 {
-    //delete m_Layer;
-}
-
-void gpSeries::invertY()
-{
-	m_Data.invertY();
+    /*delete m_lineLayer;
+	delete m_barLayer;
+	delete m_areaLayer;*/
 }
 
 
@@ -49,50 +54,10 @@ void gpSeries::RefreshChart( gpCHART_KIND gpChart_kind, double samplerate,
             wxString customYXFormula, gpAXIS_SCALE gpXaxis_type,
             gpAXIS_SCALE gpYaxis_type )
 {
-    m_Layer->DataSet( m_Data.GetData() );
+	m_lineLayer->DataSet( m_Data.GetData() );
 	m_barLayer->DataSet(m_Data.GetData());
-	m_barLayer->SetGradientBackColour(false);
-    if(gpChart_kind== gpCHART_DEFAULT)
-    {
-        m_Layer->DataSet( m_Data.GetData() );
-    }
-
-    else if(gpChart_kind== gpCHART_INL)
-    {
-        m_Layer->DataSet(m_Data.GetINL(true));
-    }
-    else if(gpChart_kind== gpCHART_DNL)
-    {
-        m_Layer->DataSet(m_Data.GetDNL(true));
-    }
-    else if(gpChart_kind== gpCHART_FFT)
-    {
-        m_Layer->DataSet( m_Data.GetFft(fftlenght, samplerate) );
-    }
-    else if(gpChart_kind== gpCHART_CUSTOM)
-    {
-        m_Layer->DataSet( m_Data.GetCustom(wxEmptyString,
-                customYXFormula) );
-    }
-    else if(gpChart_kind== gpCHART_ACCUMULATION)
-    {
-        m_Layer->DataSet( m_Data.GetAccumulation(
-                            gpYaxis_type == gpAXIS_PROCENT ) );
-
-        if(m_Layer->GetMinY()>0)m_Layer->SetMinY(0);
-    }
-
-    if( gpYaxis_type == gpAXIS_CUSTOM )
-    {
-        m_Layer->DataSet( m_Layer->GetCustom(
-                            wxEmptyString, customYFormula) );
-    }
-
-    if( gpXaxis_type == gpAXIS_CUSTOM )
-    {
-        m_Layer->DataSet( m_Layer->GetCustom(
-                    customXFormula, wxEmptyString) );
-    }
+	m_areaLayer->DataSet(m_Data.GetData());
+	m_pointLayer->DataSet(m_Data.GetData());
 }
 
 /*!
@@ -122,8 +87,9 @@ bool gpSeries::IsLabel( wxString CompareLabel )
  */
 void gpSeries::SetContinuity( bool continuity )
 {
-    m_Layer->SetContinuity( continuity );
+	m_lineLayer->SetContinuity( continuity );
 	m_barLayer->SetContinuity(continuity);
+	m_areaLayer->SetContinuity(continuity);
 }
 
 
@@ -132,8 +98,10 @@ void gpSeries::SetContinuity( bool continuity )
  */
 void gpSeries::SetVisible( bool show )
 {
-    m_Layer->SetVisible( show );
+	m_lineLayer->SetVisible( show );
 	m_barLayer->SetVisible(show);
+	m_areaLayer->SetVisible(show);
+	m_pointLayer->SetVisible(show);
 }
 
 
@@ -142,37 +110,51 @@ void gpSeries::SetVisible( bool show )
  */
 void gpSeries::ShowName( bool show )
 {
-   m_Layer->ShowName( show );
-   m_barLayer->ShowName(show);
+	m_lineLayer->ShowName( show );
+	m_barLayer->ShowName(show);
+	m_areaLayer->ShowName(show);
+	m_pointLayer->ShowName(show);
 }
 
-/*!
- *  \brief Gets a pointer to m_Layer
- *
- *  \return
- *  a pointer to m_Layer
- */
-mpLayer* gpSeries::GetLayer( void )
+
+lineChartLayer* gpSeries::getLineChartLayer( void )
 {
-    return m_Layer;
+    return m_lineLayer;
 }
 
+barChartLayer * gpSeries::getBarChartLayer()
+{
+	return m_barLayer;
+}
+
+areaChartLayer * gpSeries::getAreaChartLayer()
+{
+	return m_areaLayer;
+}
+
+lineChartLayer * gpSeries::getPointChartLayer()
+{
+	return m_pointLayer;
+}
 
 /*!
  *  \brief Calls the SetPen function of m_Layer
  */
 void gpSeries::SetPen( wxPen pen )
 {
-    m_Layer->SetPen( pen );
+	m_lineLayer->SetPen( pen );
 	m_barLayer->SetPen(pen);
+	m_areaLayer->SetPen(pen);
+	m_pointLayer->SetPen(pen);
 }
 
 void gpSeries::SetBrush(wxBrush brush)
 {
-	m_Layer->SetBrush(brush);
+	m_lineLayer->SetBrush(brush);
 	m_barLayer->SetBrush(brush);
+	m_areaLayer->SetBrush(brush);
+	m_pointLayer->SetBrush(brush);
 }
-
 
 /*!
  *  \brief Calls the DataClear function of m_Data
@@ -182,6 +164,13 @@ void gpSeries::DataClear( void )
     m_Data.DataClear();
 }
 
+void gpSeries::invert(bool value)
+{
+	m_lineLayer->invert(value);
+	m_barLayer->invert(value);
+	m_areaLayer->invert(value);
+	m_pointLayer->invert(value);
+}
 
 /*!
  *  \brief Gets the multimap data from m_Data
@@ -192,9 +181,4 @@ void gpSeries::DataClear( void )
 xyMultimap_t gpSeries::GetData( void )
 {
     return m_Data.GetData();
-}
-
-barChartLayer * gpSeries::getBarChartLayer()
-{
-	return m_barLayer;
 }

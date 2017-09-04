@@ -17,6 +17,9 @@
  *
  */
 #include "gpLayer.h"
+#include "mpScaleX.h"
+#include "mpScaleY.h"
+#include "mpInfoCoord.h"
 
 gpLayer::gpLayer() : wxToolTip(wxEmptyString)
 {
