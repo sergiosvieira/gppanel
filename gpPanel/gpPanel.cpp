@@ -22,6 +22,9 @@
 #include "mpPrintout.h"
 #include "mpScaleY.h"
 #include "mpScaleX.h"
+#include "lineChartLayer.h"
+#include "barChartLayer.h"
+
 
 #ifndef WX_PRECOMP
 	//(*InternalHeadersPCH(gpPanel)
@@ -41,7 +44,7 @@
 //*)
 
 #include <wx/file.h>
-#include "baseData.h"
+#include "baseXYData.h"
 
 #include <wx/tipwin.h>
 #include "gpPopup.h"

@@ -2,7 +2,7 @@
 #define __GP_BAR_LAYER__
 
 #include "gpLayer.h"
-#include "baseData.h"
+#include "baseXYData.h"
 #include "gpSeries.h"
 
 #include <vector>

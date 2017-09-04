@@ -1,5 +1,7 @@
-
 #include "gpSeries.h"
+#include "lineChartLayer.h"
+#include "barChartLayer.h"
+#include "areaChartLayer.h"
 
 /*!
  *  \brief Constructor

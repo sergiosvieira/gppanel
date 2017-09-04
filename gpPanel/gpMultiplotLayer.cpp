@@ -3,6 +3,10 @@
 #include "mpScaleX.h"
 #include "mpInfoLegend.h"
 #include "mpInfoCoord.h"
+#include "gpSeries.h"
+#include "lineChartLayer.h"
+#include "BarChartLayer.h"
+#include "AreaChartLayer.h"
 
 gpSeries * gpMultiPlotLayer::FindSeries(wxString SeriesLabel)
 {

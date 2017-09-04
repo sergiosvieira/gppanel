@@ -2,7 +2,7 @@
 #define LINE_LAYER_H
 
 #include "gpLayer.h"
-#include "baseData.h"
+#include "baseXYData.h"
 #include "gpSeries.h"
 
 #include <vector>

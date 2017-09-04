@@ -1,4 +1,5 @@
 #include "mpWindow.h"
+#include "lineChartLayer.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Name:            mathplot.cpp
@@ -51,7 +52,7 @@
 #include <cstdio> // used only for debug
 #include <ctime> // used for representation of x axes involving date
 
-#include "baseData.h"
+#include "baseXYData.h"
 #include "mpPointLayer.h"
 #include "mpScaleX.h"
 #include "mpScaleY.h"

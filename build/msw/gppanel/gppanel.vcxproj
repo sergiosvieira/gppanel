@@ -69,7 +69,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\baseData.h" />
+    <ClInclude Include="..\..\..\include\areaChartLayer.h" />
+    <ClInclude Include="..\..\..\include\barChartLayer.h" />
+    <ClInclude Include="..\..\..\include\baseXYData.h" />
+    <ClInclude Include="..\..\..\include\baseXYMixedData.h" />
+    <ClInclude Include="..\..\..\include\CMinMax.h" />
     <ClInclude Include="..\..\..\include\Fourier.h" />
     <ClInclude Include="..\..\..\include\Fourier.inline.h" />
     <ClInclude Include="..\..\..\include\gpMultiplotLayer.h" />
@@ -84,7 +88,9 @@
     <ClInclude Include="..\..\..\include\gpPopupGroup.h" />
     <ClInclude Include="..\..\..\include\gpSeries.h" />
     <ClInclude Include="..\..\..\include\gpSizer.h" />
+    <ClInclude Include="..\..\..\include\lineChartLayer.h" />
     <ClInclude Include="..\..\..\include\mathplot.h" />
+    <ClInclude Include="..\..\..\include\MixedLineChartLayer.h" />
     <ClInclude Include="..\..\..\include\mpBitmapLayer.h" />
     <ClInclude Include="..\..\..\include\mpCovarianceEllipse.h" />
     <ClInclude Include="..\..\..\include\mpFX.h" />
@@ -111,22 +117,30 @@
     <ClInclude Include="..\..\..\include\mpWindow.h" />
     <ClInclude Include="..\..\..\include\mpXYArea.h" />
     <ClInclude Include="..\..\..\include\symbols.h" />
+    <ClInclude Include="..\..\..\include\xyMultimapLabel.h" />
+    <ClInclude Include="..\..\..\include\YbarChartLayer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\gpPanel\baseData.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\areaChartLayer.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\barChartLayer.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\baseXYData.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\baseXYMixedData.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\CMinMax.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpMultiplotLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpLineLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpPanel.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpSeries.cpp" />
     <ClCompile Include="..\..\..\gpPanel\gpSizer.cpp" />
-    <ClCompile Include="..\..\..\gpPanel\mathplot.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\lineChartLayer.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\math\Fourier.cpp" />
     <ClCompile Include="..\..\..\gpPanel\math\gpFormula.cpp" />
     <ClCompile Include="..\..\..\gpPanel\math\gpMath.cpp" />
     <ClCompile Include="..\..\..\gpPanel\menu\gpMenu.cpp" />
     <ClCompile Include="..\..\..\gpPanel\menu\gpMenuGroup.cpp" />
     <ClCompile Include="..\..\..\gpPanel\menu\gpPopup.cpp" />
     <ClCompile Include="..\..\..\gpPanel\menu\gpPopupGroup.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\MixedLineChartLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\mpBitmapLayer.cpp" />
     <ClCompile Include="..\..\..\gpPanel\mpCovarianceEllipse.cpp" />
     <ClCompile Include="..\..\..\gpPanel\mpFX.cpp" />
@@ -152,6 +166,8 @@
     <ClCompile Include="..\..\..\gpPanel\mpText.cpp" />
     <ClCompile Include="..\..\..\gpPanel\mpWindow.cpp" />
     <ClCompile Include="..\..\..\gpPanel\mpXYArea.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\xyMultimapLabel.cpp" />
+    <ClCompile Include="..\..\..\gpPanel\YbarChartLayer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

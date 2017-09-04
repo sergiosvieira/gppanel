@@ -2,8 +2,13 @@
 #define GPSERIES_H
 
 #include "gpLayer.h"
-#include "baseData.h"
+#include "baseXYData.h"
 #include <vector>
+
+class lineChartLayer;
+class barChartLayer;
+class areaChartLayer;
+class areaChartLayer;
 
 class gpSeries
 {
