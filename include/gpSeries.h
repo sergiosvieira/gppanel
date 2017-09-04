@@ -12,6 +12,8 @@ protected:
 	lineChartLayer *m_lineLayer = nullptr;
 	barChartLayer *m_barLayer = nullptr;
 	areaChartLayer *m_areaLayer = nullptr;
+	lineChartLayer *m_pointLayer = nullptr;
+
 	baseXYData m_Data;
 public:
 	bool IsLabel( wxString CompareLabel );
@@ -35,6 +37,7 @@ public:
 	lineChartLayer* getLineChartLayer();
 	barChartLayer* getBarChartLayer();
 	areaChartLayer * getAreaChartLayer();
+	lineChartLayer * getPointChartLayer();
 };
 
 #endif

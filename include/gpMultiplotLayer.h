@@ -21,7 +21,8 @@ public:
 	{
 		BAR,
 		LINE,
-		AREA
+		AREA,
+		POINT
 	};
 protected:
 	/* Protected variables */

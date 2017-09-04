@@ -147,6 +147,9 @@ gpSeries * gpMultiPlotLayer::AddSeriesLayer(wxString label)
 	case gpMultiPlotLayer::Type::AREA:
 		this->AddLayer(Series->getAreaChartLayer());
 		break;
+	case gpMultiPlotLayer::Type::POINT:
+		this->AddLayer(Series->getPointChartLayer());
+		break;
 	default:
 		break;
 	}	

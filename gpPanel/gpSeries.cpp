@@ -9,7 +9,11 @@ gpSeries::gpSeries( wxString label )
     m_lineLayer = new lineChartLayer( label );
 	m_barLayer = new barChartLayer(label);
 	m_areaLayer = new areaChartLayer(label);
+	m_pointLayer = new lineChartLayer(label);
 	m_barLayer->SetGradientBackColour(false);
+	m_pointLayer->SetPointType(mpCIRCLE);
+	m_pointLayer->SetContinuity(false);
+
     m_Label = label;
 }
 
@@ -51,6 +55,7 @@ void gpSeries::RefreshChart( gpCHART_KIND gpChart_kind, double samplerate,
 	m_lineLayer->DataSet( m_Data.GetData() );
 	m_barLayer->DataSet(m_Data.GetData());
 	m_areaLayer->DataSet(m_Data.GetData());
+	m_pointLayer->DataSet(m_Data.GetData());
 }
 
 /*!
@@ -94,6 +99,7 @@ void gpSeries::SetVisible( bool show )
 	m_lineLayer->SetVisible( show );
 	m_barLayer->SetVisible(show);
 	m_areaLayer->SetVisible(show);
+	m_pointLayer->SetVisible(show);
 }
 
 
@@ -105,6 +111,7 @@ void gpSeries::ShowName( bool show )
 	m_lineLayer->ShowName( show );
 	m_barLayer->ShowName(show);
 	m_areaLayer->ShowName(show);
+	m_pointLayer->ShowName(show);
 }
 
 
@@ -123,6 +130,11 @@ areaChartLayer * gpSeries::getAreaChartLayer()
 	return m_areaLayer;
 }
 
+lineChartLayer * gpSeries::getPointChartLayer()
+{
+	return m_pointLayer;
+}
+
 /*!
  *  \brief Calls the SetPen function of m_Layer
  */
@@ -131,6 +143,7 @@ void gpSeries::SetPen( wxPen pen )
 	m_lineLayer->SetPen( pen );
 	m_barLayer->SetPen(pen);
 	m_areaLayer->SetPen(pen);
+	m_pointLayer->SetPen(pen);
 }
 
 void gpSeries::SetBrush(wxBrush brush)
@@ -138,6 +151,7 @@ void gpSeries::SetBrush(wxBrush brush)
 	m_lineLayer->SetBrush(brush);
 	m_barLayer->SetBrush(brush);
 	m_areaLayer->SetBrush(brush);
+	m_pointLayer->SetBrush(brush);
 }
 
 /*!
@@ -153,6 +167,7 @@ void gpSeries::invert(bool value)
 	m_lineLayer->invert(value);
 	m_barLayer->invert(value);
 	m_areaLayer->invert(value);
+	m_pointLayer->invert(value);
 }
 
 /*!

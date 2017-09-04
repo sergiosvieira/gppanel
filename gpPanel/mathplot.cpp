@@ -1415,12 +1415,18 @@ void mpFXY::Plot(wxDC & dc, mpWindow & w)
 				{
 					ix = w.x2p(x);
 					iy = w.y2p(y);
+
+					if (m_invert)
+					{
+						iy = w.y2p(w.getChartAxisMinY()) - iy;
+					}
+
 					if (m_drawOutsideMargins || ((ix >= startPx) && (ix <= endPx) && (iy >= minYpx) && (iy <= maxYpx)))
 					{
 						switch(m_pointType)
 						{	//
 							case mpCIRCLE:
-								dc.DrawCircle(ix,iy,2);
+								dc.DrawCircle(ix,iy,4);
 								break;
 							case mpRECT:
 								dc.DrawRectangle(ix,iy,m_RectSize.x,m_RectSize.y);
