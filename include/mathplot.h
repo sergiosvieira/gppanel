@@ -1645,6 +1645,7 @@ protected:
     void OnMouseHelp     (wxCommandEvent   &event); //!< Context menu handler
     void OnMouseWheel    (wxMouseEvent     &event); //!< Mouse handler for the wheel
     void OnMouseMove     (wxMouseEvent     &event); //!< Mouse handler for mouse motion (for pan)
+	bool checkPoint(int mouseX, int mouseY, int centerX, int centerY, int r);
     void OnMouseLeftDown (wxMouseEvent     &event); //!< Mouse left click (for rect zoom)
     void OnMouseLeftRelease (wxMouseEvent  &event); //!< Mouse left click (for rect zoom)
     void OnMouseRightDown(wxMouseEvent     &event); //!< Mouse handler, for detecting when the user drags with the right button or just "clicks" for the menu

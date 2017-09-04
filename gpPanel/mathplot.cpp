@@ -49,6 +49,8 @@
 #include <cstdio> // used only for debug
 #include <ctime> // used for representation of x axes involving date
 
+#include "baseData.h"
+
 // #include "pixel.xpm"
 
 // Memory leak debugging
@@ -1380,6 +1382,7 @@ void mpFXY::MarkCorners(bool t)
 {
     m_markCorners = t;
 }
+
 void mpFXY::Plot(wxDC & dc, mpWindow & w)
 {
 	if (m_visible) {
@@ -2599,6 +2602,14 @@ void mpWindow::OnMouseMove(wxMouseEvent     &event)
     event.Skip();
 }
 
+bool mpWindow::checkPoint(int mouseX, int mouseY, int centerX, int centerY, int r)
+{
+	int distance = std::sqrt(std::pow(mouseX - centerX, 2) +
+		std::pow(mouseY - centerY, 2));
+	if (distance <= r)  return true;
+	return false;
+}
+
 void mpWindow::OnMouseLeftDown (wxMouseEvent &event)
 {
     m_mouseDownHasHappened = true;
@@ -2623,6 +2634,27 @@ void mpWindow::OnMouseLeftDown (wxMouseEvent &event)
 		this->SetCursor(wxCURSOR_CROSS);
 		m_movingPointLayer->UpdatePoint(*this, event);
 		event.Skip(); return;
+	}
+
+	for (auto layer : m_layers)
+	{
+		lineChartLayer *pLayer = dynamic_cast<lineChartLayer*>(layer);
+		if (pLayer != nullptr && pLayer->GetContinuity() == false)
+		{
+			double x, y;
+			wxCoord ix, iy;
+			pLayer->Rewind();
+			while (pLayer->GetNextXY(x, y))
+			{
+				int xp = x2p(x);
+				int yp = y2p(y);
+				if (checkPoint(pointClicked.x, pointClicked.y, x2p(x), y2p(y), 4))
+				{
+					wxMessageBox("Clicou no ponto (" + wxString::FromDouble(x) + "," + wxString::FromDouble(y) + ")");
+					break;
+				}
+			}
+		}
 	}
     event.Skip();
 }

@@ -94,6 +94,7 @@ void gpPanel::OnKeyDown(wxKeyEvent &event)
     event.Skip();
 }
 
+
 void gpPanel::Refresh()
 {
     gpLayerList_t::iterator it;
