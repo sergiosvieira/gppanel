@@ -1,4 +1,9 @@
 #include "gpLineLayer.h"
+#include "mpScaleY.h"
+#include "mpScaleX.h"
+#include "mpPointLayer.h"
+#include "mpInfoLegend.h"
+#include "mpInfoCoord.h"
 
 
 /*!

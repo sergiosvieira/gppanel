@@ -7,6 +7,8 @@
 
 #include <vector>
 
+class mpNoteLegend;
+
 
 #ifdef THIS_LAYER_TYPE
 #undef THIS_LAYER_TYPE

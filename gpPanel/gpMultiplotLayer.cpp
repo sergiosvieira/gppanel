@@ -1,4 +1,8 @@
 #include <gpMultiplotLayer.h>
+#include "mpScaleY.h"
+#include "mpScaleX.h"
+#include "mpInfoLegend.h"
+#include "mpInfoCoord.h"
 
 gpSeries * gpMultiPlotLayer::FindSeries(wxString SeriesLabel)
 {

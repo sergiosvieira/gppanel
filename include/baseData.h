@@ -1,3 +1,9 @@
+#include "mpFXY.h"
+#include "mpFXYBar.h"
+#include "mpFYXBar.h"
+#include "mpXYArea.h"
+
+
 /**
  *	@file		baseData.h
  *	@author     Jussi Vatjus-Anttila

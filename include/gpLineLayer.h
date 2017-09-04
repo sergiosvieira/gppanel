@@ -13,6 +13,8 @@
 #endif
 #define THIS_LAYER_TYPE     gpLAYER_LINE
 
+class mpNoteLegend;
+
 typedef std::deque<mpPointLayer*> mpPointList_t;
 
 class gpLineLayer : public gpLayer
